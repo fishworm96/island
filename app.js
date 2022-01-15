@@ -1,17 +1,13 @@
 const Koa = require('koa')
-const Router = require('koa-router')
-const requireDirectory = require('require-directory')
+const parser = require('koa-bodyparser')
 
-const router = new Router()
+const InitManager = require('./core/init')
+
 const app = new Koa()
 
-const modules = requireDirectory(module, './api/v1', { visit: whenLoadModule })
-
-function whenLoadModule (obj) {
-  if (obj instanceof Router) {
-    app.use(obj.routes())
-  }
-}
+app.use(parser())
+// 解析api
+InitManager.initCore(app)
 
 
 app.listen(3000)

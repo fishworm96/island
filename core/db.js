@@ -36,7 +36,7 @@ const sequelize = new Sequelize(dbName, user, password, {
 sequelize.sync({
   // 强制同步
   // 删除同名数据表后同步，谨慎使用，会导致数据丢失
-  force: true
+  force: false
 })
 
 module.exports = {

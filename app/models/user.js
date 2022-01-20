@@ -19,6 +19,22 @@ class User extends Model {
     }
     return user
   }
+
+  static async getUserByOpenid (openid) {
+    const user = await User.findOne({
+      where: {
+        openid
+      }
+    })
+    return user
+  }
+
+  static async registerByOpenid(openid) {
+    await User.create({
+      openid
+    })
+    return openid
+  }
 }
 
 User.init({
@@ -35,7 +51,7 @@ User.init({
     type: Sequelize.STRING(128),
     unique: true,
   },
-  password: { 
+  password: {
     type: Sequelize.STRING,
     set (val) {
       const salt = bcrypt.genSaltSync(10)

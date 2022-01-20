@@ -15,7 +15,7 @@ const sequelize = new Sequelize(dbName, user, password, {
   // 日志
   logging: true,
   // 北京时区
-  timezone: '+8:00',
+  // timezone: '+8:00',
   define: {
     // 是否为表添加 deletedAt 字段
     // 默认情况下, destroy() 方法会删除数据，

@@ -10,7 +10,6 @@ router.post('/', new Auth().m, async ctx => {
   const v = await new LikeValidator().validate(ctx)
   await Favor.like(v.get('body.art_id', v.get('body.type'), ctx.auth.uid))
   success()
-  ctx.body = 'ok'
 })
 
 module.exports = router

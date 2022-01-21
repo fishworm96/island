@@ -23,6 +23,7 @@ class Art {
 
         break;
     }
+    return art
   }
 }
 

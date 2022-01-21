@@ -15,12 +15,12 @@ const sequelize = new Sequelize(dbName, user, password, {
   // 日志
   logging: true,
   // 北京时区
-  // timezone: '+8:00',
+  timezone: '+8:00',
   define: {
     // 是否为表添加 deletedAt 字段
     // 默认情况下, destroy() 方法会删除数据，
     // 设置 paranoid 为 true 时，将会更新 deletedAt 字段，并不会真实删除数据。
-    timestamps: true,
+    timestamps: false,
     paranoid: true,
     // 是否为表添加 createdAt 和 updatedAt 字段
     // createdAt 记录表的创建时间

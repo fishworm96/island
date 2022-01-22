@@ -52,7 +52,7 @@ class Forbidden extends HttpException {
     }
 }
 
-class linkError extends HttpException {
+class LikeError extends HttpException {
     constructor(msg, errorCode) {
         super()
         this.code = 400
@@ -61,7 +61,7 @@ class linkError extends HttpException {
     }
 }
 
-class DislikeError extends HttpException {
+class DisLikeError extends HttpException {
     constructor(msg, errorCode) {
         super()
         this.code = 400
@@ -80,6 +80,6 @@ module.exports = {
     NotFound,
     AuthFailed,
     Forbidden,
-    linkError,
-    DislikeError
+    LikeError,
+    DisLikeError
 }

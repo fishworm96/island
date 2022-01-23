@@ -1,6 +1,27 @@
+const { Op } = require('sequelize')
+
+const { sequelize } = require("../../core/db");
 const { Movie, Music, Sentence } = require("./classic");
 
 class Art {
+  constructor(art_id, type) {
+    this.art_id = art_id
+    this.type = type
+  }
+
+  async getDetail (uid) {
+    const { Favor } = require('./favor')
+    const art = await Art.getData(this.art_id, this.type)
+    if (!art) {
+      throw new global.errs.NotFound()
+    }
+    const like = await Favor.userLikeIt(this.art_id, this.type, uid)
+    return {
+      art,
+      like_status: like
+    }
+  }
+
   static async getData (art_id, type) {
     let art = null
     const finder = {
@@ -35,7 +56,16 @@ class Art {
     for (let artInfo of artInfoList) {
       artInfoObj[artInfo.type].push(artInfo.art_id)
     }
-
+    const arts = []
+    for (let key in artInfoObj) {
+      const ids = artInfoObj[key]
+      if (ids.length === 0) {
+        continue
+      }
+      key = parseInt(key)
+      await arts.push(await Art._getListByType(ids, key))
+    }
+    return arts.flat()
   }
 
   static async _getListByType (ids, type) {
@@ -59,8 +89,8 @@ class Art {
         break;
       case 400:
         break;
-        default:
-          break;
+      default:
+        break;
     }
     return arts
   }

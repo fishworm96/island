@@ -1,6 +1,7 @@
 const { Op } = require('sequelize')
 
 const { sequelize } = require("../../core/db");
+
 const { Movie, Music, Sentence } = require("./classic");
 
 class Art {
@@ -88,6 +89,13 @@ class Art {
         arts = await Sentence.findOne(finder)
         break;
       case 400:
+        const { Book } = require('./book');
+        art = await Book.scope(scope).findOne(finder)
+        if (!art) {
+          art = await Book.create({
+            id: art_id,
+          })
+        }
         break;
       default:
         break;

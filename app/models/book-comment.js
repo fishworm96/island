@@ -31,13 +31,13 @@ class Comment extends Model {
     return comments
   }
 
-  toJSON () {
-    return {
-      // content: this.dataValues
-      content: this.getDataValue('content'),
-      nums: this.getDataValue('nums'),
-    }
-  }
+  // toJSON () {
+  //   return {
+  //     // content: this.dataValues
+  //     content: this.getDataValue('content'),
+  //     nums: this.getDataValue('nums'),
+  //   }
+  // }
 }
 
 Comment.init({

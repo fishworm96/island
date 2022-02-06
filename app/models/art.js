@@ -100,6 +100,10 @@ class Art {
       default:
         break;
     }
+    // if (art && art.image) {
+    //   let imageUrl = art.dataValues.image
+    //   art.dataValues.image = global.config.host + imageUrl
+    // }
     return arts
   }
 }

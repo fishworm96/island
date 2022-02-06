@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize')
+const {Sequelize, Model} = require('sequelize')
 const {
   dbName,
   host,
@@ -38,6 +38,8 @@ sequelize.sync({
   // 删除同名数据表后同步，谨慎使用，会导致数据丢失
   force: false
 })
+
+
 
 module.exports = {
   sequelize
